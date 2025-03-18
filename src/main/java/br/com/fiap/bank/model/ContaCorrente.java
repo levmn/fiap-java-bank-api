@@ -7,7 +7,6 @@ public class ContaCorrente extends Conta {
     private double limite;
 
     public ContaCorrente() {
-
     }
 
     public ContaCorrente(Long id, String numero, String agencia, LocalDate dataAbertura, double saldoInicial,

@@ -39,7 +39,7 @@ public class ContaController {
         return ResponseEntity.ok(contas);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Conta> getContaById(@PathVariable Long id) {
         Optional<Conta> conta = contas.stream()
                 .filter(c -> c.getId().equals(id))
@@ -49,7 +49,7 @@ public class ContaController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/corrente")
+    @PostMapping("corrente")
     public ResponseEntity<ContaCorrente> createContaCorrente(@RequestBody ContaCorrente conta) {
         conta.setId(nextId++);
         conta.setDataAbertura(LocalDate.now());
@@ -58,7 +58,7 @@ public class ContaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(conta);
     }
 
-    @PostMapping("/poupanca")
+    @PostMapping("poupanca")
     public ResponseEntity<ContaPoupanca> createContaPoupanca(@RequestBody ContaPoupanca conta) {
         conta.setId(nextId++);
         conta.setDataAbertura(LocalDate.now());
@@ -67,7 +67,7 @@ public class ContaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(conta);
     }
 
-    @PostMapping("/salario")
+    @PostMapping("salario")
     public ResponseEntity<ContaSalario> createContaSalario(@RequestBody ContaSalario conta) {
         conta.setId(nextId++);
         conta.setDataAbertura(LocalDate.now());
@@ -76,7 +76,7 @@ public class ContaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(conta);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Conta> updateConta(@PathVariable Long id, @RequestBody Conta contaAtualizada) {
         Optional<Conta> contaExistente = contas.stream()
                 .filter(c -> c.getId().equals(id))
@@ -94,8 +94,8 @@ public class ContaController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> softDeleteConta(@PathVariable Long id) {
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deactivateConta(@PathVariable Long id) {
         Optional<Conta> contaOpt = contas.stream()
                 .filter(c -> c.getId().equals(id))
                 .findFirst();

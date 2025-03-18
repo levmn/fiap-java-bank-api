@@ -9,8 +9,6 @@ public class ContaSalario extends Conta {
     private Integer saquesMensais;
 
     public ContaSalario() {
-        super();
-        this.saquesMensais = 0;
     }
 
     public ContaSalario(Long id, String numero, String agencia, LocalDate dataAbertura,
